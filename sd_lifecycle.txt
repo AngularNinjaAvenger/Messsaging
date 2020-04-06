@@ -1,0 +1,40 @@
+FUNCTIONAL REQUIREMENTS
+- MANDATORY
+	- get my list of connections
+	- get list of people to message
+	- visit message page for individual
+	- mesage the person
+	- remove person after sending message
+
+- NICE TO HAVE
+	- check if the person is online
+	- check last sent message
+
+
+CLASSES 
+
+    connecitons
+        list of people (list)
+    
+    people
+        string profile_name
+        message (function)
+
+    connections with (connecitons txt db)
+        get_list (function)
+        add_connection (function)
+    
+
+TXT DB
+    connetions
+    message
+
+
+RELATIONSHIP
+    one-to-many
+        connection ---> people
+
+ACTOR
+    me
+
+USE CASE
