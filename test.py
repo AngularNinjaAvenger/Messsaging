@@ -4,7 +4,7 @@ from testT import g
 soup = BeautifulSoup(g,"lxml")
 x = soup.findAll("a", {"class": "search-result__result-link"})
 
-new_links = []
+new_connection = []
 ctr = 0
 for i in x:
     connectionName = i.find("img")
@@ -12,9 +12,9 @@ for i in x:
         if connectionName:
             print(connectionName["alt"])
             print(i["href"])    
-            new_links.append(Connection(connectionName["alt"],i["href"]))
+            new_connection.append(Connection(connectionName["alt"],i["href"]))
         else:
-            new_links.append(Connection(None,i["href"]))
+            new_connection.append(Connection(None,i["href"]))
             
             
     ctr+=1

@@ -1,5 +1,6 @@
 import Connections as cons
 import Connection from Connection as Con
+from time import sleep
 class Connections:
     self.connections = []
     
@@ -18,13 +19,13 @@ class Connections:
         retrys = 0
         while i < 100:
             brow.get(page)
-            page = page[0:-1]
             PAGE_RESULT = self.getConnections(brow,soup)
             if PAGE_RESULT == None:
                if retrys > 4:
                    break
                retrys+=1
                continue
+            page = page[0:-1]
             self.addConnection(PAGE_RESULT)
             i+=1
         
@@ -44,20 +45,22 @@ class Connections:
                 else:
                     new_connection.append(Connection(None,i["href"]))
             ctr+=1
-        return new_links
+        return new_connection
 
     def addConnection(self,res):
         connection_file = open(cons.CONNECTION_FILE_PATH,"a")
+        toBeMessaged_file = open(cons.TO_BE_MESSAGED_FILE_PATH,"a")
         for i in res:
             connection_file.write( f"{i.name} {i.profile} \n")
+            toBeMessaged_file.write( f"{i.name} {i.profile} \n")
+        toBeMessaged_file.close()
         connection_file.close()
-        pass
+
     def loadConnections(self):
-        # THIS IS WHERE YOU STOP WE ARE STRYING TO LOAD IN THE CONNECTIONS
-        with open("C:/Users/Angular_Nija_Avenger/Documents/Messsaging/db/connections.txt") as file_in:
+        toBeMessagedConnections = []
+        with open(cons.TO_BE_MESSAGED_FILE_PATH) as file_in:
              test = " "
              for line in file_in:
-                 test = line.split()
-                 if not test == []:
-                     self.push("".join(test))
-        # "gg gg".split()
+                person = line.split()
+                toBeMessagedConnections.append(Connection(person[0],person[1]))
+        return toBeMessagedConnections
