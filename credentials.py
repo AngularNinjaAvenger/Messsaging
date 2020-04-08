@@ -1,5 +1,0 @@
-EMAIL = "reclinkedin@gmail.com"
-PASSWORD = "Desto424"
-TO_BE_MESSAGED_FILE_PATH = "C:/Users/Angular_Nija_Avenger/Documents/Messsaging/db/toBeMessaged.txt"
-CONNECTION_FILE_PATH = "C:/Users/Angular_Nija_Avenger/Documents/Messsaging/db/connections.txt"
-CONNECTIONS_PAGE = "https://www.linkedin.com/search/results/people/?facetNetwork=%5B%22F%22%5D&origin=FACETED_SEARCH&page="
