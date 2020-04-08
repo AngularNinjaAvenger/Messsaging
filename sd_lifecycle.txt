@@ -15,15 +15,13 @@ CLASSES
 
     connecitons
         list of people (list)
-    
-    people
-        string profile_name
-        message (function)
-
-    connections with (connecitons txt db)
         get_list (function)
         add_connection (function)
     
+    connection
+        string profile_name
+        message (function)
+
 
 TXT DB
     connetions
