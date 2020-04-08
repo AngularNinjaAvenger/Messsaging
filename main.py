@@ -4,7 +4,8 @@ from Authentication import Authentication as auth
 from credentials import MESSAGE_FILE_PATH
 class main:
     def __init__(self):
-        self.b = "browser" 
+        self.b = webdriver.Chrome(credentials.CHROME_DRIVE_PATH)
+        		
     def main():
         auth.auth(self.b,self.selector)
         cons = Conss()
@@ -19,8 +20,11 @@ class main:
             lastPresent = True
             
         for connection in cons.loadConnections():
-            if f"{connection.name} {connection.profile}" == last:
-                
+            if not lastPresent:
+                if f"{connection.name} {connection.profile}" == last:
+                    lastPresent = True
+                else:
+                    continue
             connection.sendMessage(browser,selector,message)
         message_file.close()
         
