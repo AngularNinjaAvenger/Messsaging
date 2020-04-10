@@ -2,3 +2,5 @@
 ./credentials.py
 ./Provider/authenticationCredentials.py
 /Provider/authenticationCredentials.py
+./Model/conCred.py
+/Model/conCred.py

@@ -7,7 +7,6 @@ sys.path.insert(1,credentials.PROVIDER_PATH)
 sys.path.insert(2,credentials.MODEL_PATH)
 
 from Authentication import Authentication as auth
-
 from Connections import Connections as Conss
 
 

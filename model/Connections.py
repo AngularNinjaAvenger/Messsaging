@@ -1,11 +1,18 @@
-import Connections as cons
-import Connection from Connection as Con
+from conCred import CREDENTIAL_FILE_PATH
+import sys
+
+sys.path.insert(1,CREDENTIAL_FILE_PATH)
+import credentials as cred
+
+from Connection import Connection as Con
 from time import sleep
+
 class Connections:
-    self.connections = []
+    def __init__(self):
+        self.connections = []
     
     def toBeMessaged(self):
-        x = open(cons.TO_BE_MESSAGED_FILE_PATH,"r");
+        x = open(cred.TO_BE_MESSAGED_FILE_PATH,"r");
         if x.read() == "":
             x.close()
             return True
@@ -13,7 +20,7 @@ class Connections:
         return False
         
     def getConnection(self,brow,sel,soup):
-        page = cons.CONNECTIONS_PAGE
+        page = cred.CONNECTIONS_PAGE
         i = 1
         page+=i
         retrys = 0
@@ -31,7 +38,7 @@ class Connections:
         
     def getConnections(self,brow,soup):
         soup = soup()
-        x = soup.findAll("a", {"class": cons.CONNECTION_CONTAINER })
+        x = soup.findAll("a", {"class": cred.CONNECTION_CONTAINER })
         ctr = 0
         new_connection = []
         ctr = 0
@@ -48,8 +55,8 @@ class Connections:
         return new_connection
 
     def addConnection(self,res):
-        connection_file = open(cons.CONNECTION_FILE_PATH,"a")
-        toBeMessaged_file = open(cons.TO_BE_MESSAGED_FILE_PATH,"a")
+        connection_file = open(cred.CONNECTION_FILE_PATH,"a")
+        toBeMessaged_file = open(cred.TO_BE_MESSAGED_FILE_PATH,"a")
         for i in res:
             connection_file.write( f"{i.name} {i.profile} \n")
             toBeMessaged_file.write( f"{i.name} {i.profile} \n")
@@ -58,7 +65,7 @@ class Connections:
 
     def loadConnections(self):
         toBeMessagedConnections = []
-        with open(cons.TO_BE_MESSAGED_FILE_PATH) as file_in:
+        with open(cred.TO_BE_MESSAGED_FILE_PATH) as file_in:
              test = " "
              for line in file_in:
                 person = line.split()
