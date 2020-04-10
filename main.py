@@ -17,24 +17,25 @@ class main:
     def main(self):
         auth.auth(self.b,self.selector)
         cons = Conss()
-        if cons.toBeMessaged():
-            print("the file is empty so we are going to get new connecitons")
-            cons.getConnection(self.b,self.selector,self.soup)
+        # if cons.toBeMessaged():
+        #     print("the file is empty so we are going to get new connecitons")
+        #     cons.getConnection(self.b,self.selector,self.soup)
         message_file = open(credentials.MESSAGE_FILE_PATH,"r")
-        message = message.read()
-        
-        lastPresent = False
-        last = open(credentials.LAST_CONNECTION_SENT_MESSAGE_FILE_PATH,"r")
-        if last == "":
-            lastPresent = True
-            
+        message = message_file.read()
+        # lastPresent = False
+        # last = open(credentials.LAST_CONNECTION_SENT_MESSAGE_FILE_PATH,"r")
+        # if last == "":
+        #     lastPresent = True
+        # print=(last)
         for connection in cons.loadConnections():
-            if not lastPresent:
-                if f"{connection.name} {connection.profile}" == last:
-                    lastPresent = True
-                else:
-                    continue
-            connection.sendMessage(browser,selector,message)
+            # print(f"{connection.name} {connection.profile}")
+            # if not lastPresent:
+            #     if f"{connection.name} {connection.profile}" == last:
+            #         lastPresent = True
+            #     else:
+            #         continue
+            # print("sending connection message")
+            connection.sendMessage(self.b,self.selector,message,webdriver)
         message_file.close()
         
         

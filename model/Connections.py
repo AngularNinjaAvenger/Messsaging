@@ -96,6 +96,10 @@ class Connections:
              test = " "
              for line in file_in:
                 person = line.split()
-                toBeMessagedConnections.append(Connection(person[0],person[1]))
+                profile = ""
+                if person[0] == "None":
+                    profile = person[1]
+                else:
+                    profile = person[2]
+                toBeMessagedConnections.append(Connection(person[0] ,profile))
         return toBeMessagedConnections
-
