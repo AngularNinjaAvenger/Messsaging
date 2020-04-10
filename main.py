@@ -1,9 +1,14 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
+import credentials
+import sys
+
+sys.path.insert(1,credentials.PROVIDER_PATH)
+sys.path.insert(2,credentials.MODEL_PATH)
 
 from Authentication import Authentication as auth
+
 from Connections import Connections as Conss
-from credentials import MESSAGE_FILE_PATH
 
 
 class main:
@@ -15,7 +20,7 @@ class main:
         cons = Conss()
         if cons.toBeMessaged():
             cons.getConnection(self.b,self.selector,self.soup)
-        message_file = open(MESSAGE_FILE_PATH,"r")
+        message_file = open(credentials.MESSAGE_FILE_PATH,"r")
         message = message.read()
         
         lastPresent = False
