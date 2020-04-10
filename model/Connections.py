@@ -26,9 +26,9 @@ class Connections:
         page = cred.CONNECTIONS_PAGE
         i = 0
         retrys = 0
+        page+="1"
+        brow.get(page)
         while i < 100:
-            page+=str(i)
-            brow.get(page)
             print("getting connections for a particular page",page)
             PAGE_RESULT = self.getConnections(brow,soup)
             if PAGE_RESULT == None:
@@ -36,16 +36,20 @@ class Connections:
                    break
                retrys+=1
                continue
-            page = page[0:-1]
             self.addConnection(PAGE_RESULT)
             i+=1
             if self.nextPage(soup):
-                self.clickNextPage()i
-            
+                if not self.clickNextPage(sel):
+                    break
+            else:
+                break    
             
     def clickNextPage(self,sel):
-        sel("class",cred.NEXT_BUTTON).click()
-
+        try:
+            sel("class",cred.NEXT_BUTTON).click()
+            return True
+        except:
+            return False
     def nextPage(self,soup):
         soup = soup()
         try:

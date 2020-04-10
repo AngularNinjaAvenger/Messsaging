@@ -37,6 +37,7 @@ class main:
             connection.sendMessage(browser,selector,message)
         message_file.close()
         
+        
     def selector(self,selector,name):
         if selector == "tag":
             return self.b.find_element_by_tag_name(name)
