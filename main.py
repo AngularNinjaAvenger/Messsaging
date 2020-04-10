@@ -14,10 +14,11 @@ class main:
     def __init__(self):
         self.b = webdriver.Chrome(credentials.CHROME_DRIVE_PATH)
         		
-    def main():
+    def main(self):
         auth.auth(self.b,self.selector)
         cons = Conss()
         if cons.toBeMessaged():
+            print("the file is empty so we are going to get new connecitons")
             cons.getConnection(self.b,self.selector,self.soup)
         message_file = open(credentials.MESSAGE_FILE_PATH,"r")
         message = message.read()
@@ -46,7 +47,8 @@ class main:
         else:
             return False
     def soup(self):
-        t_soup = BeautifulSoup(self.browser.page_source, "lxml")
+        t_soup = BeautifulSoup(self.b.page_source, "lxml")
         return t_soup
 
-main().main()
+program = main()
+program.main()

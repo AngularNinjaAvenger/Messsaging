@@ -1,5 +1,5 @@
 from authenticationCredentials import authCred
-
+from time import sleep
 class Authentication:
     def auth(browser,selector):
         browser.get(authCred.LOGIN_URL)
@@ -8,4 +8,4 @@ class Authentication:
         passElement = selector("id",authCred.PASSWORD_SELECTOR)
         passElement.send_keys(authCred.PASSWORD)
         passElement.submit()
-        time.sleep(3)
+        sleep(3)
