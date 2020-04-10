@@ -1,7 +1,11 @@
 from bs4 import BeautifulSoup
-from Connections import Connections as Conss
+from selenium import webdriver
+
 from Authentication import Authentication as auth
+from Connections import Connections as Conss
 from credentials import MESSAGE_FILE_PATH
+
+
 class main:
     def __init__(self):
         self.b = webdriver.Chrome(credentials.CHROME_DRIVE_PATH)
@@ -30,15 +34,15 @@ class main:
         
     def selector(self,selector,name):
         if selector == "tag":
-			return self.b.find_element_by_tag_name(name)
-			pass
-		elif selector == "id":
-			return self.b.find_element_by_id(name)
-		elif selector == "class":
-			return self.b.find_element_by_class_name(name)
-			pass
-		else:
-			return False
+            return self.b.find_element_by_tag_name(name)
+        elif selector == "id":
+            return self.b.find_element_by_id(name)
+        elif selector == "class":
+            return self.b.find_element_by_class_name(name)
+        else:
+            return False
     def soup(self):
         t_soup = BeautifulSoup(self.browser.page_source, "lxml")
-		return t_soup
+        return t_soup
+
+main().main()
